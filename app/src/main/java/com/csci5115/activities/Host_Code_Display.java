@@ -41,7 +41,7 @@ public class Host_Code_Display extends AppCompatActivity {
 
     private void launchListRecommendation() {
 
-        Intent intent = new Intent(this, New_Playlist.class);
+        Intent intent = new Intent(this, PlayListActivity.class);
         startActivity(intent);
 
     }
