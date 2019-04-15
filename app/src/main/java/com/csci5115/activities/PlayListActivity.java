@@ -112,6 +112,12 @@ public class PlayListActivity extends AppCompatActivity
             startActivity(intent);
 
         }
+        if (id == 3) {
+
+            Intent intent = new Intent(this, Search_Enter.class);
+            startActivity(intent);
+
+        }
     }
 
 }
