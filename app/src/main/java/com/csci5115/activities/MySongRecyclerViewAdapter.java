@@ -9,6 +9,8 @@ import android.widget.TextView;
 import com.csci5115.activities.SongFragment.OnListFragmentInteractionListener;
 import com.csci5115.activities.dummy.Song;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 /**
@@ -38,7 +40,8 @@ public class MySongRecyclerViewAdapter extends RecyclerView.Adapter<MySongRecycl
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).id);
         holder.mContentView.setText(mValues.get(position).name);
-
+        holder.mTimeView.setText(mValues.get(position).length);
+        holder.mArtistView.setText(mValues.get(position).artist);
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,13 +63,16 @@ public class MySongRecyclerViewAdapter extends RecyclerView.Adapter<MySongRecycl
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
+        public final TextView mTimeView;
+        public final TextView mArtistView;
         public Song mItem;
-
         public ViewHolder(View view) {
             super(view);
             mView = view;
             mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mContentView = (TextView) view.findViewById(R.id.name);
+            mTimeView = (TextView) view.findViewById(R.id.Time);
+            mArtistView = (TextView) view.findViewById(R.id.Singer_name);
         }
 
         @Override

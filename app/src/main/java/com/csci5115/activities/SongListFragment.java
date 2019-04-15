@@ -25,7 +25,7 @@ import java.util.List;
 public class SongListFragment extends Fragment {
 
     // TODO: Customize parameters
-    private int mColumnCount = 2;
+    private int mColumnCount = 1;
 
     //RecyclerView view;
 

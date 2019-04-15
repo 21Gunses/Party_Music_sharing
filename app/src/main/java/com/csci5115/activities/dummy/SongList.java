@@ -11,11 +11,11 @@ import java.util.ArrayList;
 public class SongList implements Parcelable{
     public String id;
     public String name;
-    public Integer nSong;
+    public String nSong;
     public String length;
     public ArrayList<Song> song_list;
 
-    public SongList(String id, String name, Integer nSong,
+    public SongList(String id, String name, String nSong,
                     String length, ArrayList<Song> song_list) {
         this.id = id;
         this.name = name;
@@ -28,7 +28,7 @@ public class SongList implements Parcelable{
         Bundle bundle = in.readBundle();
         this.id = bundle.getString("id");
         this.name = bundle.getString("name");
-        this.nSong = bundle.getInt("nSong");
+        this.nSong = bundle.getString("nSong");
         this.length = bundle.getString("length");
         in.readTypedList(this.song_list, Song.CREATOR);
     }
@@ -50,7 +50,7 @@ public class SongList implements Parcelable{
         bundle.putString("id", this.id);
         bundle.putString("name", this.name);
         bundle.putString("length", this.length);
-        bundle.putInt("nSong", this.nSong);
+        bundle.putString("nSong", this.nSong);
         dest.writeBundle(bundle);
         dest.writeTypedList(song_list);
     }

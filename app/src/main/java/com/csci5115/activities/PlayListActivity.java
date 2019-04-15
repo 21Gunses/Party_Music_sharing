@@ -41,10 +41,10 @@ public class PlayListActivity extends AppCompatActivity
             song_list.add(new Song("" + i,"song" + i, "artist"+i, "4:00"));
         }
 
-        items.add(new SongList("1","list1", 5,"20:00",song_list));
-        items.add(new SongList("2","list2", 5,"20:00", song_list));
-        items.add(new SongList("3","list3", 5,"20:00", song_list));
-        items.add(new SongList("4","list4", 5,"20:00",song_list));
+        items.add(new SongList("1","list1", "5","20:00",song_list));
+        items.add(new SongList("2","list2", "5","20:00", song_list));
+        items.add(new SongList("3","list3", "5","20:00", song_list));
+        items.add(new SongList("4","list4", "5","20:00",song_list));
 
 
         fragment = new SongListFragment();
