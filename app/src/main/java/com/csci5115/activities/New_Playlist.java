@@ -21,8 +21,7 @@ public class New_Playlist extends AppCompatActivity {
         mBtLaunchPopList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                LaunchPop();
+                LaunchPop("POP");
             }
         });
 
@@ -37,8 +36,9 @@ public class New_Playlist extends AppCompatActivity {
         });
     }
 
-    private void LaunchPop() {
-        Intent intent = new Intent(this, Pop_playlist.class);
+    private void LaunchPop(String name) {
+        Intent intent = new Intent(this, Pop_PlayListActivity.class);
+        intent.putExtra("playListName", name);
         startActivity(intent);
     }
 
