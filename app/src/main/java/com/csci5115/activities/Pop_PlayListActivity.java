@@ -20,6 +20,7 @@ public class Pop_PlayListActivity extends AppCompatActivity
         implements SongListFragment.OnListFragmentInteractionListener,
         SongFragment.OnListFragmentInteractionListener,
         BlankFragment.OnClickListener,
+        BlankFragment2.OnClickListener,
         BlankFragment3.OnClickListener{
 
     private Fragment fragment = null;
@@ -37,26 +38,43 @@ public class Pop_PlayListActivity extends AppCompatActivity
         TextView title = findViewById(R.id.playlistname);
         title.setText(intent.getStringExtra("playListName"));
 
+        ArrayList<Song> song_list = new ArrayList<>();
+
+        if (intent.getBooleanExtra("isNew", true)){
+            fragment = new SongFragment();
+            fragment_button = new BlankFragment2();
+
+            Bundle args = new Bundle();
+            args.putParcelableArrayList("songs", song_list);
+            fragment.setArguments(args);
+
+            tf.add(R.id.main_frag, fragment);
+            tf.add(R.id.button_frag, fragment_button);
+
+            tf.commit();
+        }
+        else{
+            for (int i = 0; i < 5; i++){
+                song_list.add(new Song("" + i,"song" + i, "artist"+i, "4:00"));
+            }
+
+            fragment = new SongFragment();
+            fragment_button = new BlankFragment3();
+
+
+            Bundle args = new Bundle();
+            args.putParcelableArrayList("songs", song_list);
+            fragment.setArguments(args);
+
+            tf.add(R.id.main_frag, fragment);
+            tf.add(R.id.button_frag, fragment_button);
+
+            tf.commit();
+        }
         //Get the fragment manager for this activity (MainActivity)
         //FragmentTransaction tf = getSupportFragmentManager().beginTransaction();
 
-        ArrayList<Song> song_list = new ArrayList<>();
-        for (int i = 0; i < 5; i++){
-            song_list.add(new Song("" + i,"song" + i, "artist"+i, "4:00"));
-        }
 
-        fragment = new SongFragment();
-        fragment_button = new BlankFragment3();
-
-
-        Bundle args = new Bundle();
-        args.putParcelableArrayList("songs", song_list);
-        fragment.setArguments(args);
-
-        tf.add(R.id.main_frag, fragment);
-        tf.add(R.id.button_frag, fragment_button);
-
-        tf.commit();
         /*ft.add(R.id.f_layout,f,"");
         ft.commit();*/
 
@@ -67,6 +85,10 @@ public class Pop_PlayListActivity extends AppCompatActivity
         if (fragment instanceof BlankFragment) {
             BlankFragment f = (BlankFragment) fragment;
             f.setOnClickListenerListener(this);
+        }
+        else if (fragment instanceof BlankFragment2) {
+            BlankFragment2 f = (BlankFragment2) fragment;
+            f.setOnClickListenerListener2(this);
         }
         else if (fragment instanceof BlankFragment3) {
             BlankFragment3 f = (BlankFragment3) fragment;
@@ -97,34 +119,21 @@ public class Pop_PlayListActivity extends AppCompatActivity
     public void onClicked(int id){
         if (id == 2) {
             Toast.makeText(getApplicationContext(), ""+id, Toast.LENGTH_SHORT).show();
-//                SongFragment fragment2 = new SongFragment();
-//                BlankFragment2 fragment_button = new BlankFragment2();
-//                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//
-//                ft.replace(R.id.main_frag, fragment2);
-//                ft.replace(R.id.button_frag, fragment_button);
-//
-//                ft.commit();
             Intent intent = new Intent(this, New_Playlist.class);
-
             startActivity(intent);
 
+        }
+        if (id == 3) {
+            Intent intent = new Intent(this, Search_Enter.class);
+            startActivity(intent);
         }
         if (id == 4) {
             Toast.makeText(getApplicationContext(), ""+id, Toast.LENGTH_SHORT).show();
-//                SongFragment fragment2 = new SongFragment();
-//                BlankFragment2 fragment_button = new BlankFragment2();
-//                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//
-//                ft.replace(R.id.main_frag, fragment2);
-//                ft.replace(R.id.button_frag, fragment_button);
-//
-//                ft.commit();
             Intent intent = new Intent(this, PlayListActivity.class);
             //intent.putExtra();
             startActivity(intent);
-
         }
+
     }
 
 }

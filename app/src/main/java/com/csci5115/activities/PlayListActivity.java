@@ -98,25 +98,14 @@ public class PlayListActivity extends AppCompatActivity
     @Override
     public void onClicked(int id){
         if (id == 2) {
-                Toast.makeText(getApplicationContext(), ""+id, Toast.LENGTH_SHORT).show();
-//                SongFragment fragment2 = new SongFragment();
-//                BlankFragment2 fragment_button = new BlankFragment2();
-//                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//
-//                ft.replace(R.id.main_frag, fragment2);
-//                ft.replace(R.id.button_frag, fragment_button);
-//
-//                ft.commit();
+            Toast.makeText(getApplicationContext(), ""+id, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, New_Playlist.class);
-
             startActivity(intent);
 
         }
         if (id == 3) {
-
             Intent intent = new Intent(this, Search_Enter.class);
             startActivity(intent);
-
         }
     }
 
