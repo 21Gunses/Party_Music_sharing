@@ -28,6 +28,8 @@ public class Pop_PlayListActivity extends AppCompatActivity
     private FragmentManager fm = getSupportFragmentManager();
     private FragmentTransaction tf = fm.beginTransaction();
 
+    private String listName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,16 +37,23 @@ public class Pop_PlayListActivity extends AppCompatActivity
 
         Intent intent = getIntent();
 
+        listName = intent.getStringExtra("playListName");
+
         TextView title = findViewById(R.id.playlistname);
-        title.setText(intent.getStringExtra("playListName"));
+        title.setText(listName);
 
         ArrayList<Song> song_list = new ArrayList<>();
 
-        if (intent.getBooleanExtra("isNew", true)){
+        if (intent.getBooleanExtra("isNew", false)){
             fragment = new SongFragment();
             fragment_button = new BlankFragment2();
 
             Bundle args = new Bundle();
+            if (intent.getBooleanExtra("isAdd", false)) {
+                Bundle received_bundle = intent.getExtras();
+                Song received_song = (Song) received_bundle.getParcelable("song");
+                song_list.add(received_song);
+            }
             args.putParcelableArrayList("songs", song_list);
             fragment.setArguments(args);
 
@@ -57,7 +66,7 @@ public class Pop_PlayListActivity extends AppCompatActivity
             for (int i = 0; i < 5; i++){
                 song_list.add(new Song("" + i,"song" + i, "artist"+i, "4:00"));
             }
-
+            if (intent.getBooleanExtra("isAdd", false)){
             fragment = new SongFragment();
             fragment_button = new BlankFragment3();
 
@@ -70,6 +79,7 @@ public class Pop_PlayListActivity extends AppCompatActivity
             tf.add(R.id.button_frag, fragment_button);
 
             tf.commit();
+            }
         }
         //Get the fragment manager for this activity (MainActivity)
         //FragmentTransaction tf = getSupportFragmentManager().beginTransaction();
@@ -125,6 +135,8 @@ public class Pop_PlayListActivity extends AppCompatActivity
         }
         if (id == 3) {
             Intent intent = new Intent(this, Search_Enter.class);
+            intent.putExtra("sendFrom", "newList");
+            intent.putExtra("listName", listName);
             startActivity(intent);
         }
         if (id == 4) {
