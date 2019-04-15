@@ -9,6 +9,10 @@ import android.widget.Button;
 public class New_Playlist extends AppCompatActivity {
 
     private Button mBtLaunchPopList;
+    private Button mBtLaunchDanceList;
+    private Button mBtLaunchRockList;
+    private Button mBtLaunchHipList;
+    private Button mBtStartEmptyList;
     private Button mBtBacktoHost;
 
     @Override
@@ -17,17 +21,38 @@ public class New_Playlist extends AppCompatActivity {
         setContentView(R.layout.activity_new_playlist);
 
         mBtLaunchPopList = (Button) findViewById(R.id.Pop);
-
         mBtLaunchPopList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                LaunchPop("POP");
+            }
+        });
 
-                LaunchPop();
+        mBtLaunchDanceList = (Button) findViewById(R.id.Dance);
+        mBtLaunchDanceList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LaunchPop("Dance");
+            }
+        });
+
+        mBtLaunchRockList = (Button) findViewById(R.id.Rock);
+        mBtLaunchRockList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LaunchPop("Rock");
+            }
+        });
+
+        mBtLaunchHipList = (Button) findViewById(R.id.Hiphop);
+        mBtLaunchHipList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LaunchPop("Hip-Hop");
             }
         });
 
         mBtBacktoHost = (Button) findViewById(R.id.Back);
-
         mBtBacktoHost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -35,10 +60,26 @@ public class New_Playlist extends AppCompatActivity {
                 finish();
             }
         });
+
+        mBtStartEmptyList = (Button) findViewById(R.id.Empty);
+        mBtStartEmptyList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CreateEmpty("Default List", true);
+            }
+        });
     }
 
-    private void LaunchPop() {
-        Intent intent = new Intent(this, Pop_playlist.class);
+    private void LaunchPop(String name) {
+        Intent intent = new Intent(this, Pop_PlayListActivity.class);
+        intent.putExtra("playListName", name);
+        startActivity(intent);
+    }
+
+    private void CreateEmpty(String name, boolean isNew) {
+        Intent intent = new Intent(this, Pop_PlayListActivity.class);
+        intent.putExtra("playListName", name);
+        intent.putExtra("isNew", isNew);
         startActivity(intent);
     }
 

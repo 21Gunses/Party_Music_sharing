@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.csci5115.activities.dummy.SongList;
@@ -15,11 +16,12 @@ import com.csci5115.activities.dummy.Song;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayListActivity extends AppCompatActivity
-    implements SongListFragment.OnListFragmentInteractionListener,
+public class Pop_PlayListActivity extends AppCompatActivity
+        implements SongListFragment.OnListFragmentInteractionListener,
         SongFragment.OnListFragmentInteractionListener,
         BlankFragment.OnClickListener,
-        BlankFragment2.OnClickListener{
+        BlankFragment2.OnClickListener,
+        BlankFragment3.OnClickListener{
 
     private Fragment fragment = null;
     private Fragment fragment_button = null;
@@ -29,36 +31,50 @@ public class PlayListActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_playlist);
+        setContentView(R.layout.activity_pop_playlist);
 
-        //Get the fragment manager for this activity (MainActivity)
-        //FragmentTransaction tf = getSupportFragmentManager().beginTransaction();
-        ArrayList<SongList> items;
-        items = new ArrayList<>();
+        Intent intent = getIntent();
+
+        TextView title = findViewById(R.id.playlistname);
+        title.setText(intent.getStringExtra("playListName"));
 
         ArrayList<Song> song_list = new ArrayList<>();
-        for (int i = 0; i < 5; i++){
-            song_list.add(new Song("" + i,"song" + i, "artist"+i, "4:00"));
+
+        if (intent.getBooleanExtra("isNew", true)){
+            fragment = new SongFragment();
+            fragment_button = new BlankFragment2();
+
+            Bundle args = new Bundle();
+            args.putParcelableArrayList("songs", song_list);
+            fragment.setArguments(args);
+
+            tf.add(R.id.main_frag, fragment);
+            tf.add(R.id.button_frag, fragment_button);
+
+            tf.commit();
         }
+        else{
+            for (int i = 0; i < 5; i++){
+                song_list.add(new Song("" + i,"song" + i, "artist"+i, "4:00"));
+            }
 
-        items.add(new SongList("1","list1", 5,"20:00",song_list));
-        items.add(new SongList("2","list2", 5,"20:00", song_list));
-        items.add(new SongList("3","list3", 5,"20:00", song_list));
-        items.add(new SongList("4","list4", 5,"20:00",song_list));
-
-
-        fragment = new SongListFragment();
-        fragment_button = new BlankFragment();
+            fragment = new SongFragment();
+            fragment_button = new BlankFragment3();
 
 
-        Bundle args = new Bundle();
-        args.putParcelableArrayList("items", items);
-        fragment.setArguments(args);
+            Bundle args = new Bundle();
+            args.putParcelableArrayList("songs", song_list);
+            fragment.setArguments(args);
 
-        tf.add(R.id.main_frag, fragment);
-        tf.add(R.id.button_frag, fragment_button);
+            tf.add(R.id.main_frag, fragment);
+            tf.add(R.id.button_frag, fragment_button);
 
-        tf.commit();
+            tf.commit();
+        }
+        //Get the fragment manager for this activity (MainActivity)
+        //FragmentTransaction tf = getSupportFragmentManager().beginTransaction();
+
+
         /*ft.add(R.id.f_layout,f,"");
         ft.commit();*/
 
@@ -73,6 +89,10 @@ public class PlayListActivity extends AppCompatActivity
         else if (fragment instanceof BlankFragment2) {
             BlankFragment2 f = (BlankFragment2) fragment;
             f.setOnClickListenerListener2(this);
+        }
+        else if (fragment instanceof BlankFragment3) {
+            BlankFragment3 f = (BlankFragment3) fragment;
+            f.setOnClickListenerListener(this);
         }
     }
 
@@ -107,6 +127,13 @@ public class PlayListActivity extends AppCompatActivity
             Intent intent = new Intent(this, Search_Enter.class);
             startActivity(intent);
         }
+        if (id == 4) {
+            Toast.makeText(getApplicationContext(), ""+id, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, PlayListActivity.class);
+            //intent.putExtra();
+            startActivity(intent);
+        }
+
     }
 
 }
