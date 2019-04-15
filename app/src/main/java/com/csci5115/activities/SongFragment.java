@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 
 import com.csci5115.activities.dummy.DummyContent;
 import com.csci5115.activities.dummy.DummyContent.DummyItem;
+import com.csci5115.activities.dummy.Song;
+import com.csci5115.activities.dummy.SongList;
 
 import java.util.List;
 
@@ -69,7 +71,9 @@ public class SongFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MySongRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            //recyclerView.setAdapter(new MySongRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new MySongRecyclerViewAdapter(
+                    getArguments().<Song>getParcelableArrayList("songs"), mListener));
         }
         return view;
     }
@@ -104,6 +108,6 @@ public class SongFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onSongSelected(DummyItem item);
+        void onSongSelected(Song item);
     }
 }

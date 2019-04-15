@@ -20,7 +20,9 @@
         <activity android:name=".Host_Code_Display" />
         <activity android:name=".Join_Code_enter" />
         <activity android:name=".New_Playlist" />
-        <activity android:name=".Pop_playlist"></activity>
+        <activity android:name=".Pop_playlist"/>
+        <activity android:name=".PlayListActivity">
+        </activity>
     </application>
 
 </manifest>

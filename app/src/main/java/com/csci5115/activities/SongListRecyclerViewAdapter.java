@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.csci5115.activities.SongListFragment.OnListFragmentInteractionListener;
 import com.csci5115.activities.dummy.DummyContent.DummyItem;
+import com.csci5115.activities.dummy.SongList;
 
 import java.util.List;
 
@@ -18,10 +19,10 @@ import java.util.List;
  */
 public class SongListRecyclerViewAdapter extends RecyclerView.Adapter<SongListRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<SongList> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public SongListRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public SongListRecyclerViewAdapter(List<SongList> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -37,7 +38,7 @@ public class SongListRecyclerViewAdapter extends RecyclerView.Adapter<SongListRe
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mContentView.setText(mValues.get(position).name);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +61,7 @@ public class SongListRecyclerViewAdapter extends RecyclerView.Adapter<SongListRe
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public DummyItem mItem;
+        public SongList mItem;
 
         public ViewHolder(View view) {
             super(view);

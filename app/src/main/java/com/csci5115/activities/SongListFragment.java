@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.csci5115.activities.dummy.DummyContent;
 import com.csci5115.activities.dummy.DummyContent.DummyItem;
+import com.csci5115.activities.dummy.SongList;
 
 import java.util.List;
 
@@ -25,6 +26,8 @@ public class SongListFragment extends Fragment {
 
     // TODO: Customize parameters
     private int mColumnCount = 2;
+
+    //RecyclerView view;
 
     private OnListFragmentInteractionListener mListener;
 
@@ -48,6 +51,9 @@ public class SongListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        //view = (RecyclerView) getView().findViewById(R.id.list);
+
         View view = inflater.inflate(R.layout.fragment_songlist_list, container, false);
 
         // Set the adapter
@@ -59,10 +65,10 @@ public class SongListFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new SongListRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            //recyclerView.setAdapter(new SongListRecyclerViewAdapter(DummyContent.ITEMS, mListener));
 
-            //recyclerView.setAdapter(new SongListRecyclerViewAdapter(
-                    //getArguments().<DummyItem>getParcelableArrayList("items"), mListener));
+            recyclerView.setAdapter(new SongListRecyclerViewAdapter(
+                    getArguments().<SongList>getParcelableArrayList("items"), mListener));
         }
         return view;
     }
@@ -97,7 +103,7 @@ public class SongListFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onSongListSelected(DummyItem item);
+        void onSongListSelected(SongList item);
     }
 
 /*    @Override

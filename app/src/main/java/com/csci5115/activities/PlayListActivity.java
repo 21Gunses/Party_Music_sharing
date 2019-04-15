@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.csci5115.activities.dummy.DummyContent;
+import com.csci5115.activities.dummy.SongList;
+import com.csci5115.activities.dummy.Song;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,19 +31,21 @@ public class PlayListActivity extends AppCompatActivity
 
         //Get the fragment manager for this activity (MainActivity)
         //FragmentTransaction tf = getSupportFragmentManager().beginTransaction();
-        ArrayList<DummyContent.DummyItem> items;
+        ArrayList<SongList> items;
         items = new ArrayList<>();
 
-        items.add(
-                new DummyContent.DummyItem(
-                        "1",
-                        "abc",
-                        "efg"
-                )
-        );
+        ArrayList<Song> song_list = new ArrayList<>();
+        for (int i = 0; i < 5; i++){
+            song_list.add(new Song("" + i,"song" + i, "artist"+i, "4:00"));
+        }
 
-        //
-        fragment = new BlankFragment();
+        items.add(new SongList("1","list1", 5,"20:00",song_list));
+        items.add(new SongList("2","list2", 5,"20:00", song_list));
+        items.add(new SongList("3","list3", 5,"20:00", song_list));
+        items.add(new SongList("4","list4", 5,"20:00",song_list));
+
+
+        fragment = new SongListFragment();
 
         Bundle args = new Bundle();
         args.putParcelableArrayList("items", items);
@@ -63,21 +67,21 @@ public class PlayListActivity extends AppCompatActivity
         }
     }
 
-    public void onSongListSelected( DummyContent.DummyItem item) {
-        Toast.makeText(getApplicationContext(), item.content, Toast.LENGTH_SHORT).show();
+    public void onSongListSelected( SongList item) {
+        Toast.makeText(getApplicationContext(), item.name, Toast.LENGTH_SHORT).show();
         SongFragment fragment2 = new SongFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        /*Bundle args = new Bundle();
-        args.putParcelableArrayList("items", items);
-        fragment.setArguments(args);*/
+        Bundle args = new Bundle();
+        args.putParcelableArrayList("songs", item.song_list);
+        fragment2.setArguments(args);
 
         ft.replace(R.id.main_frag, fragment2);
 
         ft.commit();
     }
 
-    public void onSongSelected( DummyContent.DummyItem item) {
-        Toast.makeText(getApplicationContext(), item.content, Toast.LENGTH_SHORT).show();
+    public void onSongSelected( Song item) {
+        Toast.makeText(getApplicationContext(), item.name, Toast.LENGTH_SHORT).show();
     }
 
     @Override
