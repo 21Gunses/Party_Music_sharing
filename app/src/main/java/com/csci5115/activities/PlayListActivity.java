@@ -1,5 +1,6 @@
 package com.csci5115.activities;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -18,9 +19,11 @@ import java.util.List;
 public class PlayListActivity extends AppCompatActivity
     implements SongListFragment.OnListFragmentInteractionListener,
         SongFragment.OnListFragmentInteractionListener,
-        BlankFragment.OnClickListener{
+        BlankFragment.OnClickListener,
+        BlankFragment2.OnClickListener{
 
     private Fragment fragment = null;
+    private Fragment fragment_button = null;
     private FragmentManager fm = getSupportFragmentManager();
     private FragmentTransaction tf = fm.beginTransaction();
 
@@ -46,12 +49,15 @@ public class PlayListActivity extends AppCompatActivity
 
 
         fragment = new SongListFragment();
+        fragment_button = new BlankFragment();
+
 
         Bundle args = new Bundle();
         args.putParcelableArrayList("items", items);
         fragment.setArguments(args);
 
         tf.add(R.id.main_frag, fragment);
+        tf.add(R.id.button_frag, fragment_button);
 
         tf.commit();
         /*ft.add(R.id.f_layout,f,"");
@@ -65,17 +71,23 @@ public class PlayListActivity extends AppCompatActivity
             BlankFragment f = (BlankFragment) fragment;
             f.setOnClickListenerListener(this);
         }
+        else if (fragment instanceof BlankFragment2) {
+            BlankFragment2 f = (BlankFragment2) fragment;
+            f.setOnClickListenerListener2(this);
+        }
     }
 
     public void onSongListSelected( SongList item) {
         Toast.makeText(getApplicationContext(), item.name, Toast.LENGTH_SHORT).show();
         SongFragment fragment2 = new SongFragment();
+        BlankFragment2 fragment_button = new BlankFragment2();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         Bundle args = new Bundle();
         args.putParcelableArrayList("songs", item.song_list);
         fragment2.setArguments(args);
 
         ft.replace(R.id.main_frag, fragment2);
+        ft.replace(R.id.button_frag, fragment_button);
 
         ft.commit();
     }
@@ -87,10 +99,18 @@ public class PlayListActivity extends AppCompatActivity
     @Override
     public void onClicked(int id){
         if (id == 2) {
-            fragment = new SongListFragment();
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.main_frag, fragment);
-            ft.commit();
+                Toast.makeText(getApplicationContext(), ""+id, Toast.LENGTH_SHORT).show();
+//                SongFragment fragment2 = new SongFragment();
+//                BlankFragment2 fragment_button = new BlankFragment2();
+//                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//
+//                ft.replace(R.id.main_frag, fragment2);
+//                ft.replace(R.id.button_frag, fragment_button);
+//
+//                ft.commit();
+            Intent intent = new Intent(this, New_Playlist.class);
+            startActivity(intent);
+
         }
     }
 

@@ -5,13 +5,22 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
+
 public class BlankFragment2 extends Fragment {
 
+    OnClickListener callback;
+
+    public void setOnClickListenerListener2(OnClickListener callback) { this.callback = callback; }
+
+    public interface OnClickListener {
+        public void onClicked(int id);
+    }
 
     public BlankFragment2() {
         // Required empty public constructor
@@ -21,8 +30,17 @@ public class BlankFragment2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_blank_fragment2, container, false);
+        View view = inflater.inflate(R.layout.fragment_blank_fragment2, container, false);
+
+        Button btn = (Button) view.findViewById(R.id.button);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callback.onClicked(3);
+            }
+        });
+
+        return view;
     }
 
 }

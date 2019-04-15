@@ -13,6 +13,7 @@ import android.widget.Button;
  * A simple {@link Fragment} subclass.
  */
 public class BlankFragment extends Fragment {
+
     OnClickListener callback;
 
     public void setOnClickListenerListener(OnClickListener callback) {
