@@ -9,10 +9,16 @@ import android.widget.EditText;
 public class Search_Enter extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE = "com.example.search.MESSAGE";
+    private String origin;
+    private String originListName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_enter);
+        Intent intent = getIntent();
+        origin = intent.getStringExtra("sendFrom");
+        originListName = intent.getStringExtra("listName");
     }
 
     /* Called when the user taps the Send button */
@@ -21,6 +27,8 @@ public class Search_Enter extends AppCompatActivity {
         EditText editText = (EditText) findViewById(R.id.editText);
         String message = editText.getText().toString();
         intent.putExtra(EXTRA_MESSAGE, message);
+        intent.putExtra("sendFrom", origin);
+        intent.putExtra("listName", originListName);
         startActivity(intent);
     }
 }

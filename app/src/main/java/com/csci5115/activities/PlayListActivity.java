@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.csci5115.activities.dummy.SongList;
@@ -26,6 +27,8 @@ public class PlayListActivity extends AppCompatActivity
     private FragmentManager fm = getSupportFragmentManager();
     private FragmentTransaction tf = fm.beginTransaction();
 
+    private String listName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +36,10 @@ public class PlayListActivity extends AppCompatActivity
 
         //Get the fragment manager for this activity (MainActivity)
         //FragmentTransaction tf = getSupportFragmentManager().beginTransaction();
+
+        //listName = intent.getStringExtra("playListName");
+        Intent intent = getIntent();
+
         ArrayList<SongList> items;
         items = new ArrayList<>();
 
@@ -46,22 +53,45 @@ public class PlayListActivity extends AppCompatActivity
         items.add(new SongList("3","list3", 5,"20:00", song_list));
         items.add(new SongList("4","list4", 5,"20:00",song_list));
 
+        if (intent.getBooleanExtra("isAdd", false)){
+            TextView title = findViewById(R.id.title);
+            title.setText(intent.getStringExtra("playListName"));
 
-        fragment = new SongListFragment();
-        fragment_button = new BlankFragment();
+            Bundle received_bundle = intent.getExtras();
+            Song received_song = (Song) received_bundle.getParcelable("song");
+            song_list.add(received_song);
 
+            fragment = new SongFragment();
+            fragment_button = new BlankFragment2();
+            Bundle args = new Bundle();
+            args.putParcelableArrayList("songs", song_list);
+            fragment.setArguments(args);
 
-        Bundle args = new Bundle();
-        args.putParcelableArrayList("items", items);
-        fragment.setArguments(args);
+            tf.add(R.id.main_frag, fragment);
+            tf.add(R.id.button_frag, fragment_button);
 
-        tf.add(R.id.main_frag, fragment);
-        tf.add(R.id.button_frag, fragment_button);
+            tf.commit();
+        }
+        else {
+            listName = "Select Your Play List!";
+            TextView title = findViewById(R.id.title);
+            title.setText(listName);
 
-        tf.commit();
+            fragment = new SongListFragment();
+            fragment_button = new BlankFragment();
+
+            Bundle args = new Bundle();
+            args.putParcelableArrayList("items", items);
+            fragment.setArguments(args);
+
+            tf.add(R.id.main_frag, fragment);
+            tf.add(R.id.button_frag, fragment_button);
+
+            tf.commit();
         /*ft.add(R.id.f_layout,f,"");
         ft.commit();*/
 
+        }
     }
 
     @Override
@@ -81,9 +111,15 @@ public class PlayListActivity extends AppCompatActivity
         SongFragment fragment2 = new SongFragment();
         BlankFragment2 fragment_button = new BlankFragment2();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
+        TextView title = findViewById(R.id.title);
+        title.setText(item.name);
+        listName = item.name;
+
         Bundle args = new Bundle();
         args.putParcelableArrayList("songs", item.song_list);
         fragment2.setArguments(args);
+
 
         ft.replace(R.id.main_frag, fragment2);
         ft.replace(R.id.button_frag, fragment_button);
@@ -105,6 +141,8 @@ public class PlayListActivity extends AppCompatActivity
         }
         if (id == 3) {
             Intent intent = new Intent(this, Search_Enter.class);
+            intent.putExtra("sendFrom", "editList");
+            intent.putExtra("listName", listName);
             startActivity(intent);
         }
     }
