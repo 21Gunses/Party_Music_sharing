@@ -17,34 +17,37 @@
 
     <FrameLayout
         android:id="@+id/main_frag"
-        android:layout_width="399dp"
-        android:layout_height="397dp"
-        android:layout_marginTop="84dp"
+        android:layout_width="0dp"
+        android:layout_height="463dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/playlistname">
 
     </FrameLayout>
 
     <FrameLayout
         android:id="@+id/button_frag"
         android:layout_width="381dp"
-        android:layout_height="105dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_frag">
+        app:layout_constraintTop_toBottomOf="@+id/main_frag"
+        app:layout_constraintVertical_bias="0.277">
 
     </FrameLayout>
 
     <TextView
         android:id="@+id/playlistname"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:gravity="center"
         android:text="Name"
-        app:layout_constraintBottom_toTopOf="@+id/main_frag"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.234"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

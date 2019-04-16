@@ -22,13 +22,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_frag">
+        app:layout_constraintTop_toBottomOf="@+id/title">
 
     </FrameLayout>
 
     <FrameLayout
         android:id="@+id/button_frag"
-        android:layout_width="0dp"
+        android:layout_width="250dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,20 +39,20 @@
 
     </FrameLayout>
 
-    <FrameLayout
-        android:id="@+id/title_frag"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="TextView" />
-    </FrameLayout>
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="43dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginLeft="76dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <!--<Button-->
         <!--android:id="@+id/New_playlist"-->
