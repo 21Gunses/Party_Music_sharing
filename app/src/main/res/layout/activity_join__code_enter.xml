@@ -9,10 +9,13 @@
     <TextView
         android:id="@+id/ShowText"
         android:layout_width="wrap_content"
-        android:layout_height="22dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="148dp"
         android:layout_marginBottom="123dp"
-        android:text="Join the party"
+        android:gravity="center"
+        android:text="Join The Party !"
+        android:textSize="50sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -27,11 +30,13 @@
         android:layout_marginLeft="153dp"
         android:layout_marginEnd="153dp"
         android:layout_marginRight="153dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="108dp"
+        android:gravity="center"
         android:text="Enter the code:"
+        android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/Entered_Code"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.705"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -59,7 +64,10 @@
         android:layout_marginEnd="165dp"
         android:layout_marginRight="165dp"
         android:layout_marginBottom="141dp"
+        android:gravity="center"
         android:text="Join"
+        android:textSize="36sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -68,8 +76,11 @@
         android:id="@+id/Back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
         android:text="Back"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

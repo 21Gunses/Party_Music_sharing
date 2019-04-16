@@ -66,7 +66,7 @@ public class Pop_PlayListActivity extends AppCompatActivity
             for (int i = 0; i < 5; i++){
                 song_list.add(new Song("" + i,"song" + i, "artist"+i, "4:00"));
             }
-            if (intent.getBooleanExtra("isAdd", false)){
+
             fragment = new SongFragment();
             fragment_button = new BlankFragment3();
 
@@ -79,7 +79,6 @@ public class Pop_PlayListActivity extends AppCompatActivity
             tf.add(R.id.button_frag, fragment_button);
 
             tf.commit();
-            }
         }
         //Get the fragment manager for this activity (MainActivity)
         //FragmentTransaction tf = getSupportFragmentManager().beginTransaction();
