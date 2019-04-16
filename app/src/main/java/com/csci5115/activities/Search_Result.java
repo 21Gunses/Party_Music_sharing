@@ -62,6 +62,7 @@ public class Search_Result extends AppCompatActivity {
             intent.putExtras(bundle);
 
             startActivity(intent);
+            finish();
         }
         else if (origin.equals("editList")){
             Intent intent = new Intent(this, PlayListActivity.class);
@@ -72,6 +73,7 @@ public class Search_Result extends AppCompatActivity {
             intent.putExtras(bundle);
 
             startActivity(intent);
+            finish();
         }
         else if (origin.equals("request")){
 

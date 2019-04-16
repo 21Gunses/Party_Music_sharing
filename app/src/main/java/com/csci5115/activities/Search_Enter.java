@@ -30,5 +30,6 @@ public class Search_Enter extends AppCompatActivity {
         intent.putExtra("sendFrom", origin);
         intent.putExtra("listName", originListName);
         startActivity(intent);
+        finish();
     }
 }

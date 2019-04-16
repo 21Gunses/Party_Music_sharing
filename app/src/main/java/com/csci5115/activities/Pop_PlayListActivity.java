@@ -131,6 +131,7 @@ public class Pop_PlayListActivity extends AppCompatActivity
             Toast.makeText(getApplicationContext(), ""+id, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, New_Playlist.class);
             startActivity(intent);
+            finish();
 
         }
         if (id == 3) {
@@ -138,12 +139,14 @@ public class Pop_PlayListActivity extends AppCompatActivity
             intent.putExtra("sendFrom", "newList");
             intent.putExtra("listName", listName);
             startActivity(intent);
+            finish();
         }
         if (id == 4) {
             Toast.makeText(getApplicationContext(), ""+id, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, PlayListActivity.class);
             //intent.putExtra();
             startActivity(intent);
+            finish();
         }
 
     }
