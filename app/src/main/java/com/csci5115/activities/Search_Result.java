@@ -48,7 +48,7 @@ public class Search_Result extends AppCompatActivity {
 
     public void addSong(Song song){
         if (!isAdd){
-            add_button.setImageResource(android.R.color.holo_orange_dark);
+            add_button.setImageResource(android.R.drawable.checkbox_on_background);
             isAdd = true;
         }
         else if (origin.equals("newList")){

@@ -79,7 +79,6 @@ public class MySongRecyclerViewAdapter extends RecyclerView.Adapter<MySongRecycl
             mTimeView = (TextView) view.findViewById(R.id.Time);
             mArtistView = (TextView) view.findViewById(R.id.Singer_name);
             mBtSongRemove = (ImageButton) view.findViewById(R.id.delete_song);
-
             mBtSongRemove.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -89,7 +88,6 @@ public class MySongRecyclerViewAdapter extends RecyclerView.Adapter<MySongRecycl
 
         }
 
-
         @Override
         public String toString() {
             return super.toString() + " '" + mContentView.getText() + "'";
@@ -97,8 +95,11 @@ public class MySongRecyclerViewAdapter extends RecyclerView.Adapter<MySongRecycl
     }
 
     public void removeAt(int position) {
+        
         mValues.remove(position);
         notifyItemRemoved(position);
+
+//        notifyItemMoved(position, position-1);
         notifyItemRangeChanged(position, mValues.size());
     }
 }

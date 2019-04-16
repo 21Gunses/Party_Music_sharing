@@ -143,7 +143,7 @@ public class Pop_PlayListActivity extends AppCompatActivity
         }
         if (id == 4) {
             Toast.makeText(getApplicationContext(), ""+id, Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, PlayListActivity.class);
+            Intent intent = new Intent(this, Host_Playlist_Manage.class);
             //intent.putExtra();
             startActivity(intent);
             finish();
