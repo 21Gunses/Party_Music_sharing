@@ -144,6 +144,13 @@ public class PlayListActivity extends AppCompatActivity
             intent.putExtra("sendFrom", "editList");
             intent.putExtra("listName", listName);
             startActivity(intent);
+            finish();
+        }
+        if (id == 4) {
+            Intent intent = new Intent(this, Host_Playlist_Manage.class);
+            intent.putExtra("sendFrom", "editList");
+            intent.putExtra("listName", listName);
+            startActivity(intent);
         }
     }
 

@@ -41,7 +41,8 @@ public class Join_Code_enter extends AppCompatActivity {
 
     private void launchJoin() {
 
-        Intent intent = new Intent(this, Pop_PlayListActivity.class);
+        Intent intent = new Intent(this, Guest_Playlist_Manage.class);
         startActivity(intent);
+
     }
 }

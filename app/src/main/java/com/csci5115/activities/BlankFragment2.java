@@ -33,10 +33,17 @@ public class BlankFragment2 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_blank_fragment2, container, false);
 
         Button btn = (Button) view.findViewById(R.id.button);
+        Button GoParty = (Button) view.findViewById(R.id.go_party);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 callback.onClicked(3);
+            }
+        });
+        GoParty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callback.onClicked(4);
             }
         });
 

@@ -48,7 +48,7 @@ public class Search_Result extends AppCompatActivity {
 
     public void addSong(Song song){
         if (!isAdd){
-            add_button.setImageResource(android.R.color.holo_orange_dark);
+            add_button.setImageResource(android.R.drawable.checkbox_on_background);
             isAdd = true;
         }
         else if (origin.equals("newList")){
@@ -62,6 +62,7 @@ public class Search_Result extends AppCompatActivity {
             intent.putExtras(bundle);
 
             startActivity(intent);
+            finish();
         }
         else if (origin.equals("editList")){
             Intent intent = new Intent(this, PlayListActivity.class);
@@ -72,6 +73,7 @@ public class Search_Result extends AppCompatActivity {
             intent.putExtras(bundle);
 
             startActivity(intent);
+            finish();
         }
         else if (origin.equals("request")){
 
