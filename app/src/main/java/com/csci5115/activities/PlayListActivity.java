@@ -134,7 +134,7 @@ public class PlayListActivity extends AppCompatActivity
     @Override
     public void onClicked(int id){
         if (id == 2) {
-            Toast.makeText(getApplicationContext(), ""+id, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), ""+id, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, New_Playlist.class);
             startActivity(intent);
 

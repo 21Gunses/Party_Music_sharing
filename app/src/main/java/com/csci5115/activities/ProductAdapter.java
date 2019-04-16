@@ -20,6 +20,9 @@ import java.util.List;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
     ArrayList<ProductViewHolder> mViewHolders;
+
+    ArrayList<Boolean> isUps;
+    ArrayList<Boolean> isDowns;
     //this context we will use to inflate the layout
     private Context mCtx;
 
@@ -36,6 +39,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         this.mCtx = mCtx;
         this.productList = productList;
         mViewHolders = new ArrayList<>();
+
+        isUps = new ArrayList<>();
+        isDowns = new ArrayList<>();
+
+        for (int i = 0; i < 6; i++){
+            isDowns.add(false);
+            isUps.add(false);
+        }
     }
 
     @Override
@@ -104,11 +115,18 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public void upvoteAt(int position) {
 //        mValues.remove(position);
 //        notifyItemRemoved(position);
+        if (isUps.get(position)){
+            return;
+        }
+        isUps.set(position, true);
+
         int pos = position;
-        if (position-1 >= 0) {
+        if (position-1 >= 0 && productList.get(pos).votes + 1 > productList.get(pos-1).votes) {
             notifyItemMoved(pos, pos-1);
             Collections.swap(productList, pos, pos-1);
             Collections.swap(mViewHolders, pos, pos-1);
+            Collections.swap(isUps, pos, pos-1);
+            Collections.swap(isDowns, pos, pos-1);
             pos = pos - 1;
         }
 
@@ -118,14 +136,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     }
 
     public void downvoteAt(int position) {
-
+        if (isDowns.get(position)){
+            return;
+        }
+        isDowns.set(position, true);
 //        mValues.remove(position);
 //        notifyItemRemoved(position);
         int pos = position;
-        if (position+1 <= productList.size()-1) {
+        if (position+1 <= productList.size()-1 && productList.get(pos).votes - 1 < productList.get(pos+1).votes) {
             notifyItemMoved(position, position+1);
             Collections.swap(productList, position, position+1);
             Collections.swap(mViewHolders, position, position+1);
+            Collections.swap(isUps, pos, pos+1);
+            Collections.swap(isDowns, position, position+1);
             pos = pos + 1;
         }
         if (productList.get(pos).votes > 1){
