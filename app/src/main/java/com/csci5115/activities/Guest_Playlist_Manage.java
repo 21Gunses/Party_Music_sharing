@@ -20,6 +20,7 @@ public class Guest_Playlist_Manage extends AppCompatActivity {
     RecyclerView recyclerView;
 
     private Button mBtQuitParty;
+    private Button mBtRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,11 +83,28 @@ public class Guest_Playlist_Manage extends AppCompatActivity {
 
             }
         });
+
+        mBtRequest = (Button) findViewById(R.id.request_song);
+
+        mBtRequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                launchSearch();
+
+            }
+        });
     }
 
     private void launchEndParty() {
 
         Intent intent = new Intent(this, Summary.class);
+        startActivity(intent);
+    }
+
+    private void launchSearch() {
+
+        Intent intent = new Intent(this, Search_Enter.class);
         startActivity(intent);
     }
 }
