@@ -39,29 +39,32 @@ public class Host_Playlist_Manage extends AppCompatActivity {
         productList.add(
                 new Product(
                         1,
-                        "song1",
+                        "21 Guns",
                         "13.3 inch, Silver, 1.35 kg",
-                        "test",
-                        "test",
-                        R.drawable.macbook));
+                        "Green Day",
+                        "5:21",
+                        10,
+                        R.drawable.album_1));
 
         productList.add(
                 new Product(
                         1,
-                        "song2",
+                        "Come As You Are",
                         "14 inch, Gray, 1.659 kg",
-                        "test",
-                        "test",
-                        R.drawable.dellinspiron));
+                        "Nirvana",
+                        "3:39",
+                        10,
+                        R.drawable.album_2));
 
         productList.add(
                 new Product(
                         1,
-                        "song3",
+                        "Sweet Dreams",
                         "13.3 inch, Silver, 1.35 kg",
-                        "test",
-                        "test",
-                        R.drawable.surface));
+                        "Marilyn Manson",
+                        "4:53",
+                        10,
+                        R.drawable.album_3));
 
         //creating recyclerview adapter
         ProductAdapter adapter = new ProductAdapter(this, productList);

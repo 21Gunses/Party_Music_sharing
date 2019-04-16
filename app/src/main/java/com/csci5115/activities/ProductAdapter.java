@@ -51,7 +51,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         //holder.textViewShortDesc.setText(product.getShortdesc());
         holder.textViewRating.setText(String.valueOf(product.getRating()));
         holder.textViewPrice.setText(String.valueOf(product.getPrice()));
-
+        holder.textViewVotes.setText(String.valueOf(""+product.getVotes()));
         holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(product.getImage()));
 
     }
@@ -65,7 +65,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        TextView textViewTitle, textViewRating, textViewPrice;
+        TextView textViewTitle, textViewRating, textViewPrice, textViewVotes;
         ImageView imageView;
 
         public ProductViewHolder(View itemView) {
@@ -75,6 +75,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             //textViewShortDesc = itemView.findViewById(R.id.textViewShortDesc);
             textViewRating = itemView.findViewById(R.id.song_artist);
             textViewPrice = itemView.findViewById(R.id.song_time);
+            textViewVotes = itemView.findViewById(R.id.song_votes);
             imageView = itemView.findViewById(R.id.imageView);
             mBtSongUpvote = (ImageButton) itemView.findViewById(R.id.upvote);
             mBtSongDownvote = (ImageButton) itemView.findViewById(R.id.downvote);

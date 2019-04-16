@@ -64,7 +64,6 @@
                                 android:layout_toRightOf="@id/imageView"
                                 android:text="song1"
                                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                                android:textColor="#000000"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
                                 tools:layout_editor_absoluteY="7dp" />
 
@@ -111,13 +110,20 @@
                                 android:layout_width="64dp"
                                 android:layout_height="64dp"
                                 android:layout_alignParentTop="true"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginLeft="8dp"
                                 android:layout_marginTop="8dp"
-                                android:layout_marginEnd="8dp"
-                                android:layout_marginRight="8dp"
-                                android:layout_toEndOf="@+id/upvote"
-                                android:layout_toRightOf="@+id/upvote"
-                                app:layout_constraintEnd_toStartOf="@+id/upvote"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginRight="16dp"
+                                android:layout_marginBottom="8dp"
+                                android:layout_toEndOf="@+id/song_name"
+                                android:layout_toRightOf="@+id/song_name"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="1.0"
+                                app:layout_constraintStart_toEndOf="@+id/song_artist"
                                 app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.071"
                                 app:srcCompat="@android:drawable/arrow_down_float" />
 
                             <ImageButton
@@ -125,14 +131,22 @@
                                 android:layout_width="64dp"
                                 android:layout_height="64dp"
                                 android:layout_alignParentTop="true"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginLeft="8dp"
                                 android:layout_marginTop="8dp"
                                 android:layout_marginEnd="8dp"
                                 android:layout_marginRight="8dp"
-                                android:layout_toEndOf="@+id/song_name"
-                                android:layout_toRightOf="@+id/song_name"
-                                app:layout_constraintEnd_toEndOf="parent"
+                                android:layout_marginBottom="8dp"
+                                android:layout_toEndOf="@+id/upvote"
+                                android:layout_toRightOf="@+id/upvote"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/downvote"
+                                app:layout_constraintHorizontal_bias="1.0"
+                                app:layout_constraintStart_toEndOf="@+id/song_artist"
                                 app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.071"
                                 app:srcCompat="@android:drawable/arrow_up_float" />
+
 
                             <TextView
                                 android:id="@+id/song_artist"

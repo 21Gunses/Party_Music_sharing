@@ -10,14 +10,16 @@ public class Product {
     private String shortdesc;
     private String rating;
     private String price;
+    private int votes;
     private int image;
 
-    public Product(int id, String title, String shortdesc, String rating, String price, int image) {
+    public Product(int id, String title, String shortdesc, String rating, String price, int votes, int image) {
         this.id = id;
         this.title = title;
         this.shortdesc = shortdesc;
         this.rating = rating;
         this.price = price;
+        this.votes = votes;
         this.image = image;
     }
 
@@ -38,6 +40,8 @@ public class Product {
     }
 
     public String getPrice() { return price; }
+
+    public int getVotes() { return votes; }
 
     public int getImage() {
         return image;
