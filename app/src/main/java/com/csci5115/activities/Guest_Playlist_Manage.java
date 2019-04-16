@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 
+import com.csci5115.activities.dummy.Song;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,6 +69,21 @@ public class Guest_Playlist_Manage extends AppCompatActivity {
                         10,
                         R.drawable.album_3));
 
+        Intent intent = getIntent();
+        if (intent.getBooleanExtra("isAdd", false)) {
+            Bundle received_bundle = intent.getExtras();
+            Song received_song = (Song) received_bundle.getParcelable("song");
+            productList.add(
+                    new Product(
+                            6,
+                            received_song.name,
+                            "13.3 inch, Silver, 1.35 kg",
+                            received_song.artist,
+                            received_song.length,
+                            0,
+                            R.drawable.album_faded));
+        }
+
         //creating recyclerview adapter
         ProductAdapter adapter = new ProductAdapter(this, productList);
 
@@ -99,12 +116,16 @@ public class Guest_Playlist_Manage extends AppCompatActivity {
     private void launchEndParty() {
 
         Intent intent = new Intent(this, Summary.class);
+
+        //intent.putExtra("listName", listName);
         startActivity(intent);
+        finish();
     }
 
     private void launchSearch() {
 
         Intent intent = new Intent(this, Search_Enter.class);
+        intent.putExtra("sendFrom", "request");
         startActivity(intent);
     }
 }

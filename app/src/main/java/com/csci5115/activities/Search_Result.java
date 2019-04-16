@@ -76,7 +76,14 @@ public class Search_Result extends AppCompatActivity {
             finish();
         }
         else if (origin.equals("request")){
-
+            Intent intent = new Intent(this, Guest_Playlist_Manage.class);
+            intent.putExtra("playListName", originListName);
+            intent.putExtra("isAdd", true);
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("song", song);
+            intent.putExtras(bundle);
+            startActivity(intent);
+            finish();
         }
     }
 }

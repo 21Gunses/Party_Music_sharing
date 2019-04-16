@@ -10,7 +10,7 @@ public class Product {
     private String shortdesc;
     private String rating;
     private String price;
-    private int votes;
+    int votes;
     private int image;
 
     public Product(int id, String title, String shortdesc, String rating, String price, int votes, int image) {

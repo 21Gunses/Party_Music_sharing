@@ -13,11 +13,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
-
+    ArrayList<ProductViewHolder> mViewHolders;
     //this context we will use to inflate the layout
     private Context mCtx;
 
@@ -27,10 +29,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public ImageButton mBtSongUpvote;
     public ImageButton mBtSongDownvote;
 
+
+
     //getting the context and product list with constructor
     public ProductAdapter(Context mCtx, List<Product> productList) {
         this.mCtx = mCtx;
         this.productList = productList;
+        mViewHolders = new ArrayList<>();
     }
 
     @Override
@@ -38,7 +43,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         //inflating and returning our view holder
         LayoutInflater inflater = LayoutInflater.from(mCtx);
         View view = inflater.inflate(R.layout.layout_products, null);
-        return new ProductViewHolder(view);
+        ProductViewHolder mViewHolder = new ProductViewHolder(view);
+        mViewHolders.add(mViewHolder);
+        return mViewHolder;
     }
 
     @Override
@@ -55,7 +62,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(product.getImage()));
 
     }
-
 
     @Override
     public int getItemCount() {
@@ -95,12 +101,18 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     }
 
     public void upvoteAt(int position) {
-
 //        mValues.remove(position);
 //        notifyItemRemoved(position);
+        int pos = position;
         if (position-1 >= 0) {
-            notifyItemMoved(position, position-1);
+            notifyItemMoved(pos, pos-1);
+            Collections.swap(productList, pos, pos-1);
+            Collections.swap(mViewHolders, pos, pos-1);
+            pos = pos - 1;
         }
+
+        productList.get(pos).votes += 1;
+        mViewHolders.get(pos).textViewVotes.setText(String.valueOf(""+productList.get(pos).getVotes()));
 //        notifyItemRangeChanged(position, mValues.size());
     }
 
@@ -108,9 +120,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
 //        mValues.remove(position);
 //        notifyItemRemoved(position);
+        int pos = position;
         if (position+1 <= productList.size()-1) {
             notifyItemMoved(position, position+1);
+            Collections.swap(productList, position, position+1);
+            Collections.swap(mViewHolders, position, position+1);
+            pos = pos + 1;
         }
+        if (productList.get(pos).votes > 1){
+            productList.get(pos).votes -= 1;
+        }
+        mViewHolders.get(pos).textViewVotes.setText(String.valueOf(""+productList.get(pos).getVotes()));
+        //holder.textViewVotes.setText(String.valueOf(""+product.getVotes()));
+
 //        notifyItemRangeChanged(position, mValues.size());
     }
 }
