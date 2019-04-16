@@ -88,6 +88,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             mBtSongUpvote.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
                     upvoteAt(getPosition());
                 }
             });
