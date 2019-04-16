@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +23,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     //we are storing all the products in a list
     private List<Product> productList;
+
+    public ImageButton mBtSongUpvote;
+    public ImageButton mBtSongDownvote;
 
     //getting the context and product list with constructor
     public ProductAdapter(Context mCtx, List<Product> productList) {
@@ -67,11 +71,45 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         public ProductViewHolder(View itemView) {
             super(itemView);
 
-            textViewTitle = itemView.findViewById(R.id.textViewTitle);
+            textViewTitle = itemView.findViewById(R.id.song_name);
             //textViewShortDesc = itemView.findViewById(R.id.textViewShortDesc);
-            textViewRating = itemView.findViewById(R.id.textViewRating);
-            textViewPrice = itemView.findViewById(R.id.textViewPrice);
+            textViewRating = itemView.findViewById(R.id.song_artist);
+            textViewPrice = itemView.findViewById(R.id.song_time);
             imageView = itemView.findViewById(R.id.imageView);
+            mBtSongUpvote = (ImageButton) itemView.findViewById(R.id.upvote);
+            mBtSongDownvote = (ImageButton) itemView.findViewById(R.id.downvote);
+            mBtSongUpvote.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    upvoteAt(getPosition());
+                }
+            });
+            mBtSongDownvote.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    downvoteAt(getPosition());
+                }
+            });
         }
+    }
+
+    public void upvoteAt(int position) {
+
+//        mValues.remove(position);
+//        notifyItemRemoved(position);
+        if (position-1 >= 0) {
+            notifyItemMoved(position, position-1);
+        }
+//        notifyItemRangeChanged(position, mValues.size());
+    }
+
+    public void downvoteAt(int position) {
+
+//        mValues.remove(position);
+//        notifyItemRemoved(position);
+        if (position+1 <= productList.size()-1) {
+            notifyItemMoved(position, position+1);
+        }
+//        notifyItemRangeChanged(position, mValues.size());
     }
 }

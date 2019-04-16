@@ -95,7 +95,7 @@ public class MySongRecyclerViewAdapter extends RecyclerView.Adapter<MySongRecycl
     }
 
     public void removeAt(int position) {
-        
+
         mValues.remove(position);
         notifyItemRemoved(position);
 

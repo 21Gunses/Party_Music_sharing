@@ -39,19 +39,19 @@ public class Guest_Playlist_Manage extends AppCompatActivity {
         productList.add(
                 new Product(
                         1,
-                        "song1",
+                        "21 Gunses",
                         "13.3 inch, Silver, 1.35 kg",
-                        4.3,
-                        600,
-                        R.drawable.macbook));
+                        "Green Day",
+                        "5:21",
+                        R.drawable.album_1));
 
         productList.add(
                 new Product(
                         1,
                         "song2",
                         "14 inch, Gray, 1.659 kg",
-                        4.3,
-                        600,
+                        "test",
+                        "test",
                         R.drawable.dellinspiron));
 
         productList.add(
@@ -59,8 +59,8 @@ public class Guest_Playlist_Manage extends AppCompatActivity {
                         1,
                         "song3",
                         "13.3 inch, Silver, 1.35 kg",
-                        4.3,
-                        600,
+                        "test",
+                        "test",
                         R.drawable.surface));
 
         //creating recyclerview adapter
