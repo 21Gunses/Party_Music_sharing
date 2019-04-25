@@ -53,7 +53,7 @@ public class Host_Playlist_Manage extends AppCompatActivity {
                         "14 inch, Gray, 1.659 kg",
                         "Nirvana",
                         "3:39",
-                        9,
+                        10,
                         R.drawable.album_2));
 
         productList.add(
@@ -63,7 +63,7 @@ public class Host_Playlist_Manage extends AppCompatActivity {
                         "13.3 inch, Silver, 1.35 kg",
                         "Marilyn Manson",
                         "4:53",
-                        8,
+                        9,
                         R.drawable.album_3));
 
         //creating recyclerview adapter
